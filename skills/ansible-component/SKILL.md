@@ -1,6 +1,6 @@
 ---
 name: ansible-component
-description: Work with DevOps components in IaC repository. Use when user mentions creating, modifying, or analyzing ansible playbooks for DevOps components like kubernetes resources, server applications, configs, secrets, helm charts, systemd services. Triggers on: "create component", "new playbook", "add inventory", "ansible component", "devops component", "helm chart", "k8s secret", "systemd service", "docker-compose service".
+description: Work with DevOps components in IaC repository. Use when user mentions creating, modifying, or analyzing ansible playbooks for DevOps components like kubernetes resources, server applications, configs, secrets, helm charts, systemd services. Triggers on "create component", "new playbook", "add inventory", "ansible component", "devops component", "helm chart", "k8s secret", "systemd service", "docker-compose service".
 ---
 
 # Ansible Component Skill
