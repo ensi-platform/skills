@@ -316,10 +316,7 @@ components:
 
 ```bash
 # Генерация кода из OpenAPI спецификации
-php artisan openapi-server-generator:generate
-
-# Или через make (если настроен)
-make openapi-generate
+php artisan openapi:generate-server
 ```
 
 Это создаст:
