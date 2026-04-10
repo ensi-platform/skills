@@ -58,6 +58,18 @@ npx skills add ensi-platform/skills
 | **ansible-component** | Work with DevOps components in IaC repository. Create ansible playbooks for kubernetes, server applications, configs, secrets. |
 
 
+## Agent Commands
+
+This repository also contains agent command definitions that are not installed via `npx skills`. These are special configuration files for specific agent workflows:
+
+| Command | Description |
+|---------|-------------|
+| **propose** | Detail task and create proposal - transforms brief feature requests into comprehensive proposal documents |
+| **plan** | Break down feature proposal into tasks - creates detailed, actionable task lists from proposals |
+| **task-coordinator** | Task execution coordinator - stores feature context and delegates tasks to subagents sequentially |
+
+These files are located in `commands/` and `agents/` directories and are used directly by the agent configuration, not through the skills CLI.
+
 ## Supported Agents
 
 Skills are tested with the following AI assistants:
