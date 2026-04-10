@@ -70,6 +70,88 @@ This repository also contains agent command definitions that are not installed v
 
 These files are located in `commands/` and `agents/` directories and are used directly by the agent configuration, not through the skills CLI.
 
+## Development Workflow
+
+This repository provides a structured workflow for feature development using agent commands:
+
+### Step 1: Create Feature Proposal
+
+```
+/propose <brief feature description>
+```
+
+The agent analyzes your request and creates a comprehensive proposal document:
+- Creates `{AI_STABLE_CONTEXT}/features/{feature-name}/proposal.md`
+- Expands requirements through targeted questions
+- Documents functional and non-functional requirements
+- Identifies edge cases and integration points
+- Records references to existing code patterns
+
+### Step 2: Break Down into Tasks
+
+```
+/plan <feature-name>
+```
+
+The agent breaks down the proposal into actionable tasks:
+- Creates `{AI_STABLE_CONTEXT}/features/{feature-name}/tasks.md`
+- Generates 5-20 detailed, self-contained tasks
+- Each task has specific file paths and acceptance criteria
+- Groups related work (e.g., migration + model, action + tests)
+
+### Step 3: Execute Tasks with Coordinator
+
+```
+@task-coordinator <feature-name>
+```
+
+The task-coordinator agent manages execution:
+- Reads both `proposal.md` and `tasks.md`
+- Initializes a todo list with all tasks
+- Stores feature context in memory
+- For each task:
+  - Delegates to a subagent with full context
+  - Tracks completed changes for subsequent tasks
+  - Asks for confirmation before marking complete
+  - Suggests commit messages
+
+### Step 4: Iterate and Refine
+
+After each task completion:
+- Review the changes
+- Accept or request corrections
+- Proceed to the next task with accumulated context
+
+### Example Workflow
+
+```bash
+# Session 1: Create proposal
+/propose Add OAuth2 authentication for users
+# → Creates features/user-auth-oauth2/proposal.md
+
+# Session 2: Create task breakdown
+/plan user-auth-oauth2
+# → Creates features/user-auth-oauth2/tasks.md with 12 tasks
+
+# Session 3: Execute tasks
+task-coordinator user-auth-oauth2
+# → Waits for "execute next task" command
+execute next task
+# → Delegates to subagent, shows changes, asks for confirmation
+yes
+# → Updates tasks.md, suggests commit, waits for next command
+execute next task
+# ... continues until all tasks are complete
+```
+
+### Benefits
+
+- **Incremental execution**: Work on one task at a time with full context
+- **Tracking**: Automatic todo list and task status management
+- **Review points**: Built-in confirmation after each task
+- **Context awareness**: Subagents know about previous changes in the same feature
+- **Traceability**: All proposals and tasks are saved for reference
+
 ## Supported Agents
 
 Skills are tested with the following AI assistants:
